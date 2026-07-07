@@ -1,58 +1,399 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-      <link rel="stylesheet" href="css/stle.css">
-      <link rel="icon" href="favicon.ico">
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
-    <title>Himesh Punj</title>
-  </head>
-  <body>
-    <div class="top">
-      <img class="t-cloud" src="images/cloud.png" alt="cloud-img">
-      <h1>I'm Himesh</h1>
-      <h2><p>a <span class="pro">pro</span>grammer.</p></h2>
-      <img class="b-cloud" src="images/cloud.png" alt="cloud-img">
-      <img src="images/mountain.png" alt="mountain-img">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Himesh Punj — AI/ML engineer and technology consultant working on applied NLP, RAG and document AI, cybersecurity, and forecasting systems.">
+  <link rel="icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Himesh Punj — AI/ML Engineer</title>
+  <style>
+    :root{
+      --ink:#0D2626;
+      --ink-soft:#264443;
+      --teal:#11999E;
+      --aqua:#66BFBF;
+      --mist:#EAF6F6;
+      --paper:#FBFDFD;
+      --amber:#E0A458;
+      --line:rgba(13,38,38,.12);
+      --maxw:1080px;
+      --display:'Space Grotesk',system-ui,sans-serif;
+      --body:'Inter',system-ui,sans-serif;
+      --mono:'JetBrains Mono',ui-monospace,monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--body);
+      font-size:17px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit;text-decoration:none}
+    ::selection{background:var(--teal);color:#fff}
+
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+    .eyebrow{
+      font-family:var(--mono);
+      font-size:.72rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--teal);
+    }
+
+    /* ---------- nav ---------- */
+    header.nav{
+      position:sticky;top:0;z-index:50;
+      background:rgba(251,253,253,.82);
+      backdrop-filter:saturate(1.2) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      max-width:var(--maxw);margin:0 auto;padding:16px 28px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .brand{font-family:var(--display);font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+    .brand .dot{color:var(--teal)}
+    .nav-links{display:flex;gap:28px;font-family:var(--mono);font-size:.8rem}
+    .nav-links a{color:var(--ink-soft);transition:color .2s}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--teal)}
+    @media(max-width:640px){.nav-links{display:none}}
+
+    /* ---------- hero ---------- */
+    .hero{padding:110px 0 90px;position:relative;overflow:hidden}
+    .hero .meta{
+      display:flex;gap:22px;flex-wrap:wrap;
+      font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);
+      margin-bottom:34px;
+    }
+    .hero .meta span{display:inline-flex;align-items:center;gap:8px}
+    .hero .meta i{width:6px;height:6px;border-radius:50%;background:var(--aqua);font-style:normal}
+    .hero h1{
+      font-family:var(--display);
+      font-weight:600;
+      font-size:clamp(2.6rem,7vw,5rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      margin:0 0 26px;
+    }
+    .hero h1 .accent{color:var(--teal)}
+    .hero .lede{
+      max-width:640px;font-size:clamp(1.05rem,2.2vw,1.3rem);
+      color:var(--ink-soft);margin:0 0 38px;line-height:1.55;
+    }
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{
+      font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;
+      padding:13px 22px;border-radius:2px;transition:transform .15s,background .2s,color .2s,border-color .2s;
+      display:inline-flex;align-items:center;gap:9px;
+    }
+    .btn-solid{background:var(--ink);color:var(--paper)}
+    .btn-solid:hover,.btn-solid:focus-visible{background:var(--teal);transform:translateY(-2px)}
+    .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+    .btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+    .hero .glyph{
+      position:absolute;right:-30px;top:60px;font-family:var(--mono);
+      font-size:.7rem;color:var(--aqua);line-height:1.7;
+      white-space:pre;opacity:.45;pointer-events:none;user-select:none;
+    }
+    @media(max-width:820px){.hero .glyph{display:none}}
+
+    /* ---------- section frame ---------- */
+    section{padding:88px 0;border-top:1px solid var(--line)}
+    .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:48px}
+    .sec-head h2{
+      font-family:var(--display);font-weight:600;
+      font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.02em;margin:0;
+    }
+    .sec-num{font-family:var(--mono);font-size:.8rem;color:var(--teal)}
+
+    /* ---------- about ---------- */
+    .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px}
+    @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:36px}}
+    .about-grid p{margin:0 0 20px;color:var(--ink-soft)}
+    .about-grid p strong{color:var(--ink);font-weight:600}
+    .facts{border-left:2px solid var(--aqua);padding-left:22px}
+    .facts dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--teal);margin-top:20px}
+    .facts dt:first-child{margin-top:0}
+    .facts dd{margin:4px 0 0;font-size:.98rem}
+
+    /* ---------- focus ---------- */
+    .focus-list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
+      background:var(--line);border:1px solid var(--line)}
+    @media(max-width:640px){.focus-list{grid-template-columns:1fr}}
+    .focus-item{background:var(--paper);padding:34px 30px;transition:background .25s}
+    .focus-item:hover{background:var(--mist)}
+    .focus-item .idx{font-family:var(--mono);font-size:.78rem;color:var(--amber)}
+    .focus-item h3{font-family:var(--display);font-weight:600;font-size:1.25rem;
+      letter-spacing:-.01em;margin:14px 0 12px}
+    .focus-item p{margin:0;color:var(--ink-soft);font-size:.96rem}
+    .tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:7px}
+    .tags span{font-family:var(--mono);font-size:.68rem;color:var(--ink-soft);
+      border:1px solid var(--line);border-radius:2px;padding:3px 8px}
+
+    /* ---------- work ---------- */
+    .work-item{display:grid;grid-template-columns:auto 1fr;gap:34px;
+      padding:30px 0;border-top:1px solid var(--line)}
+    .work-item:first-of-type{border-top:none}
+    @media(max-width:640px){.work-item{grid-template-columns:1fr;gap:12px}}
+    .work-item .wnum{font-family:var(--mono);font-size:.8rem;color:var(--teal);padding-top:4px}
+    .work-item h3{font-family:var(--display);font-weight:600;font-size:1.35rem;
+      letter-spacing:-.01em;margin:0 0 10px;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .work-item h3 .arrow{color:var(--aqua);transition:transform .2s,color .2s}
+    .work-item a.title{color:inherit}
+    .work-item a.title:hover .arrow,.work-item a.title:focus-visible .arrow{color:var(--teal);transform:translate(3px,-3px)}
+    .work-item a.title:hover h3,.work-item a.title:focus-visible h3{color:var(--teal)}
+    .work-item p{margin:0 0 14px;color:var(--ink-soft)}
+    .work-item .stack{font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);opacity:.85}
+    .work-item .repo{font-family:var(--mono);font-size:.72rem;color:var(--teal)}
+    .work-item .repo::before{content:"↳ github.com/himesh-punj/"}
+
+    /* ---------- contact ---------- */
+    .contact{background:var(--ink);color:var(--mist);border-top:none}
+    .contact .eyebrow{color:var(--aqua)}
+    .contact h2{font-family:var(--display);font-weight:600;
+      font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.02em;margin:18px 0 24px;color:#fff}
+    .contact p{max-width:520px;color:rgba(234,246,246,.72);margin:0 0 34px}
+    .contact-links{display:flex;gap:12px;flex-wrap:wrap}
+    .contact-links a{
+      font-family:var(--mono);font-size:.82rem;padding:12px 20px;border-radius:2px;
+      border:1px solid rgba(234,246,246,.22);transition:all .2s;display:inline-flex;gap:9px;align-items:center}
+    .contact-links a:hover,.contact-links a:focus-visible{
+      border-color:var(--aqua);background:rgba(102,191,191,.12);transform:translateY(-2px)}
+    .contact-links a.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+    .contact-links a.primary:hover{background:var(--aqua)}
+    footer{background:var(--ink);color:rgba(234,246,246,.45);
+      font-family:var(--mono);font-size:.72rem;padding:26px 0 40px;text-align:center}
+
+    /* ---------- reveal ---------- */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+    :focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      .reveal{opacity:1;transform:none;transition:none}
+      .btn:hover,.contact-links a:hover{transform:none}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Himesh Punj<span class="dot">.</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">about</a>
+        <a href="#focus">focus</a>
+        <a href="#work">work</a>
+        <a href="#contact">contact</a>
+      </nav>
     </div>
-    <div class="middle">
-      <div class="profile">
-        <img class="profile" src="https://scontent.fluh2-1.fna.fbcdn.net/v/t1.0-1/c0.0.200.200a/p200x200/83037123_992735897763923_6744453489268621312_o.jpg?_nc_cat=111&ccb=2&_nc_sid=7206a8&_nc_ohc=Fba2X6pf8dIAX8wdlXJ&_nc_ht=scontent.fluh2-1.fna&tp=27&oh=43e84a3ebafa95c2b0f763e817a716a3&oe=60198D96" alt="Himesh-Punj-Profile-pic">
-        <h2>Hello.</h2>
-        <p class="pg">I am Student and learning enthusiast. I ❤ to code and Also I am a freelancer.</p>
-      </div>
-      <hr>
-      <div class="skills">
-        <h2>My Skills.</h2>
-        <div class="skill-row">
-          <img class="programming-image" src="https://media2.giphy.com/media/5Lmn42BCOy99RaGRP7/giphy.gif?cid=ecf05e47jwdzgonrt4hit06adsqtcgbp4n3dyegdyblhc30b&rid=giphy.gif" alt="programming-image">
-          <h3>Programming</h3>
-          <p class="pg1">I am web devloper and make websites and full stack applications. Morever feel free to contact for any kind of programming solutions. </p>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" style="border-top:none">
+      <div class="wrap">
+        <div class="glyph" aria-hidden="true">01001000
+011010010110
+110101100101
+0111001101101000</div>
+        <div class="meta reveal">
+          <span><i></i>Noida, India</span>
+          <span><i></i>Technology Consulting</span>
+          <span><i></i>Freelance ML &middot; Python</span>
         </div>
-        <div class="skill-row">
-          <img class="gaming" src="https://www.flaticon.com/svg/static/icons/svg/3565/3565683.svg" alt="gaming">
-          <h3>I 💖 gamming</h3>
-          <p>I play games casually. I play valorant, csgo, gta.... etc.</p>
+        <h1 class="reveal">Applied <span class="accent">ML</span> for<br>systems people rely on.</h1>
+        <p class="lede reveal">I'm an AI/ML engineer and technology consultant. I build and ship
+          NLP, retrieval, and forecasting systems &mdash; from legal and document AI to
+          cybersecurity analysis &mdash; with a bias toward honest evaluation over hype.</p>
+        <div class="cta-row reveal">
+          <a class="btn btn-solid" href="#work">View selected work</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
         </div>
       </div>
-      <hr>
-      <div class="contact-me">
-        <h2>Get In Touch</h2>
-        <h3>You can follow me on social media.</h3>
-        <p class="outro">You can mail me for your projects through contact me.</p>
-        <a class="btn" href="mailto:name@email.com">CONTACT ME</a>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">/ 01</span>
+          <h2>About</h2>
+        </div>
+        <div class="about-grid">
+          <div class="reveal">
+            <p>I work at the intersection of <strong>machine learning engineering</strong> and
+              <strong>technology consulting</strong>, currently as a Senior Software Engineer in a
+              consulting practice. Most of my day is applied: turning messy, real-world problems into
+              models and pipelines that hold up in production.</p>
+            <p>My work spans <strong>NLP and language models</strong> (classification, natural language
+              inference, RAG pipelines, MCP-based tooling), <strong>document AI</strong> for legal and
+              compliance use cases, <strong>demand forecasting</strong>, and <strong>applied
+              cybersecurity</strong> research and reporting. Alongside consulting, I take on freelance
+              Python and ML work for legal-tech and data-heavy clients &mdash; most of it ends up on my
+              <a href="https://github.com/himesh-punj" target="_blank" rel="noopener" style="color:var(--teal)">GitHub</a>.</p>
+            <p>I care about the parts people skip: whether a model actually beats a simple baseline,
+              where it quietly fails, and how to explain those limits plainly.</p>
+          </div>
+          <dl class="facts reveal">
+            <dt>Role</dt>
+            <dd>Senior Software Engineer &mdash; Technology Consulting</dd>
+            <dt>Focus</dt>
+            <dd>NLP, RAG, knowledge graphs, forecasting</dd>
+            <dt>Based in</dt>
+            <dd>Noida, India</dd>
+            <dt>Also</dt>
+            <dd>Freelance Python / ML engineering</dd>
+          </dl>
+        </div>
       </div>
-    </div>
+    </section>
 
+    <!-- FOCUS -->
+    <section id="focus">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">/ 02</span>
+          <h2>What I focus on</h2>
+        </div>
+        <div class="focus-list">
+          <div class="focus-item reveal">
+            <span class="idx">A</span>
+            <h3>NLP &amp; language systems</h3>
+            <p>Text classification, natural language inference, and LLM-backed applications &mdash; built to
+              be evaluated properly, not just demoed.</p>
+            <div class="tags"><span>Transformers</span><span>NLI</span><span>SBERT</span><span>Fine-tuning</span></div>
+          </div>
+          <div class="focus-item reveal">
+            <span class="idx">B</span>
+            <h3>RAG &amp; document AI</h3>
+            <p>Retrieval pipelines and MCP-based tooling for legal and compliance documents, with
+              summarization, extraction, and grounded question answering.</p>
+            <div class="tags"><span>RAG</span><span>MCP</span><span>Vector DBs</span><span>OCR</span></div>
+          </div>
+          <div class="focus-item reveal">
+            <span class="idx">C</span>
+            <h3>Forecasting &amp; data</h3>
+            <p>Facility- and time-series forecasting with gradient boosting and quantile methods &mdash;
+              and the discipline to promote simple recency baselines when they win.</p>
+            <div class="tags"><span>LightGBM</span><span>Quantile</span><span>Time series</span></div>
+          </div>
+          <div class="focus-item reveal">
+            <span class="idx">D</span>
+            <h3>Applied cybersecurity</h3>
+            <p>Research and technical writing on AI-driven threats &mdash; from deepfakes and polymorphic
+              malware to LLM-targeted attacks &mdash; for technical and government audiences.</p>
+            <div class="tags"><span>Threat analysis</span><span>AI security</span><span>Reporting</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="bottom">
-      <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
-      <a class="footer-link" href="https://twitter.com/">Twitter</a>
-      <a class="footer-link" href="https://www.appbrewery.co/">Website</a>
-      <p class="copyright">© 2021 Himesh Punj. All Rights Resevered</p>
-    </div>
+    <!-- WORK -->
+    <section id="work">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="sec-num">/ 03</span>
+          <h2>Selected work</h2>
+        </div>
 
+        <div class="work-item reveal">
+          <span class="wnum">01</span>
+          <div>
+            <h3>Content compliance monitoring</h3>
+            <p>An R&amp;D system that classifies social-media content against regulatory categories
+              using natural language inference, built to support intermediary-compliance monitoring
+              at scale.</p>
+            <p class="stack">BART-large-MNLI &middot; zero-shot NLI &middot; Python</p>
+          </div>
+        </div>
 
-  </body>
+        <div class="work-item reveal">
+          <span class="wnum">02</span>
+          <div>
+            <h3>Legal AI platform</h3>
+            <p>A production-grade legal document platform with a RAG pipeline and MCP architecture:
+              summarization, grounded Q&amp;A, authentication, usage tracking, and subscription tiers.</p>
+            <p class="stack">RAG &middot; MCP &middot; PostgreSQL &middot; JWT &middot; LLM APIs</p>
+          </div>
+        </div>
+
+        <div class="work-item reveal">
+          <span class="wnum">03</span>
+          <div>
+            <h3>Demand forecasting redesign</h3>
+            <p>Reworked a facility-level monthly demand forecasting stack after finding the ensemble
+              collapsed to a smoother &mdash; shifting to quantile forecasting and honest recency baselines
+              as the primary layer.</p>
+            <p class="stack">LightGBM &middot; quantile regression &middot; time series</p>
+          </div>
+        </div>
+
+        <div class="work-item reveal">
+          <span class="wnum">04</span>
+          <div>
+            <h3>Automated answer evaluation</h3>
+            <p>A grading system that scores written exam answers against reference material with no
+              LLM runtime dependency, reaching a mean absolute error of 0.277 against a human baseline.</p>
+            <p class="stack">SBERT &middot; ChromaDB &middot; DeBERTa-NLI</p>
+          </div>
+        </div>
+
+        <div class="work-item reveal">
+          <span class="wnum">05</span>
+          <div>
+            <h3>AI-in-cybersecurity research</h3>
+            <p>Ongoing technical writing and compendium work on emerging AI-driven threats and
+              defensive best practices, prepared to government publication standards.</p>
+            <p class="stack">Threat research &middot; technical writing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <p class="eyebrow reveal">/ 04 &mdash; Contact</p>
+        <h2 class="reveal">Let's build something<br>worth shipping.</h2>
+        <p class="reveal">Open to freelance ML/Python engineering and interesting applied-AI problems.
+          The fastest way to reach me is email.</p>
+        <div class="contact-links reveal">
+          <!-- TODO: replace with your real email address -->
+          <a class="primary" href="mailto:you@example.com">Email me</a>
+          <a href="https://github.com/himesh-punj" target="_blank" rel="noopener">GitHub</a>
+          <!-- TODO: replace with your real LinkedIn URL -->
+          <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="yr"></span> Himesh Punj &mdash; built and maintained by hand.
+  </footer>
+
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    (function(){
+      var els = document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+        });
+      },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+      els.forEach(function(e){io.observe(e)});
+    })();
+  </script>
+</body>
 </html>
